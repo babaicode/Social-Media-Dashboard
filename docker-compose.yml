@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./api
+    entrypoint: sh ./entrypoint.sh
+    environment:
+      APP_PORT: 3000
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      SocialSync-network:
+        aliases:
+          - api
+
+  web:
+    build: ./web
+    entrypoint: sh ./entrypoint.sh
+    volumes:
+      - ./web:/usr/src/app
+    ports:
+      - "80:5173"
+    networks:
+      - SocialSync-network
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: socialsync
+      POSTGRES_PASSWORD: socialsync
+      POSTGRES_DB: socialsync
+      PGDATA: /data/socialsync/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-db:/data/postgres
+    networks:
+      - SocialSync-network
+
+  redis:
+    image: redis:6.2.4-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - SocialSync-network
+
+networks:
+  SocialSync-network:
+
+volumes:
+  postgres-db:
+    external: false
