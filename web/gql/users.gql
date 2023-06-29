@@ -1,0 +1,20 @@
+mutation Signup($input: CreateUser!) {
+  signup(createUser: $input) {
+    user {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+}
+mutation Login($input: LoginInput!) {
+  login(loginUserInput: $input) {
+    user {
+      id
+      firstName
+      lastName
+      email
+    }
+  }
+}

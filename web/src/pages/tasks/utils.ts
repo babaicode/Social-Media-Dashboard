@@ -1,1 +1,1 @@
-//for reuseble funcs 
+//for reuseble funcs
