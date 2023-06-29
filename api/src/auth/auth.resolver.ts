@@ -6,9 +6,9 @@ import { LoginInput } from './dto/login-input';
 
 @Resolver()
 export class AuthResolver {
-    constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
-    @Mutation(() => SignInResponse)
+  @Mutation(() => SignInResponse)
   async signup(
     @Args('createUser') createUser: CreateUser,
   ): Promise<SignInResponse> {

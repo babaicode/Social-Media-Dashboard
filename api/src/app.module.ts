@@ -9,16 +9,16 @@ import { AuthModule } from './auth/auth.module';
 import config from 'config/mikro-orm.config';
 
 @Module({
-  imports:
-  [ MikroOrmModule.forRoot(config),
+  imports: [
+    MikroOrmModule.forRoot(config),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,
       driver: ApolloDriver,
       playground: true,
     }),
     AuthModule,
-    UserModule
-],
+    UserModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

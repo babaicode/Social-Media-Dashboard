@@ -4,13 +4,10 @@ import { User } from './user.entity';
 import { CreateUser, UpdateUserDto } from './dto/user.dto';
 import { EntityManager } from '@mikro-orm/postgresql';
 
-
 @Injectable()
 export class UserService {
-    private readonly usersRepository: EntityRepository<User>;
-  constructor(
-    private readonly em: EntityManager,
-  ) {
+  private readonly usersRepository: EntityRepository<User>;
+  constructor(private readonly em: EntityManager) {
     this.usersRepository = this.em.getRepository(User);
   }
   findAllUsers() {
@@ -23,15 +20,6 @@ export class UserService {
       throw new NotFoundException(`User #${id} not found`);
     }
     return user;
-  }
-
-  async filterUsers(): Promise<User[]> {
-    const query = this.em.createQueryBuilder(User);
-
-    query.andWhere({ isDoctor: false });
-    // TODO implement filter
-
-    return query.getResult();
   }
 
   async createUser(user: CreateUser): Promise<User> {

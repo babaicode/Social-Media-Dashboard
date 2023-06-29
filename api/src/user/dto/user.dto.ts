@@ -1,10 +1,4 @@
-
-import {
-  IsAlpha,
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-} from 'class-validator';
+import { IsAlpha, IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import {
   Field,
   GraphQLISODateTime,
@@ -20,7 +14,7 @@ import { User } from '../user.entity';
 export class UserObject {
   @Field(() => ID)
   id: number;
-    
+
   @Field(() => GraphQLString)
   email: string;
 

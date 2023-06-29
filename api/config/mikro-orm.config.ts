@@ -1,5 +1,5 @@
 import { Options } from '@mikro-orm/core';
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 import { User } from 'src/user/user.entity';
 
 dotenv.config();

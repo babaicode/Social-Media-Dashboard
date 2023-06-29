@@ -7,11 +7,11 @@ import { CurrentUser } from 'src/auth/loggedUser.decorator';
 
 @Resolver()
 export class UserResolver {
-    constructor(private userService: UserService) {}
-    
-    @Query(() => UserObject, { name: 'user' })
+  constructor(private userService: UserService) {}
+
+  @Query(() => UserObject, { name: 'user' })
   async findOne(@CurrentUser() user: UserObject) {
-    console.log(user, 'currentuser')
+    console.log(user, 'currentuser');
     const userEntity = await this.userService.findUserByEmail(user.email);
     return userEntity ? new UserObject(userEntity) : null;
   }
