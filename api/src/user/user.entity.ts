@@ -1,4 +1,5 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, OneToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Task } from 'src/task/task.entity';
 
 @Entity()
 export class User {
@@ -29,4 +30,10 @@ export class User {
   getFullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
+
+  @OneToOne(() => Task, (task) => task.user, {
+    nullable: true,
+    owner: true,
+  })
+  task: Task | null;
 }

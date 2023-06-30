@@ -6,6 +6,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './auth/auth.module';
+import { TasksModule } from './task/task.module';
 import config from 'config/mikro-orm.config';
 
 @Module({
@@ -18,6 +19,7 @@ import config from 'config/mikro-orm.config';
     }),
     AuthModule,
     UserModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
