@@ -24,7 +24,7 @@ const ButtonBase = styled.button<ButtonProps>`
       variants: {
         primary: {
           color: "white",
-          backgroundColor: "#1ea7fd",
+          backgroundColor: "#D2B4DE",
         },
         secondary: {
           color: "#333",

@@ -33,3 +33,9 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+.prottierrrc
+../.DS_Store
+migrations/
+.env
+../web/.env

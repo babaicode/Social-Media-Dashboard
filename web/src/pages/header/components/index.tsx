@@ -1,7 +1,7 @@
-import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { HeaderContainer, Logo, Row } from "../styles";
 import logoSvg from "../../../assets/logo.svg";
+import Button from "../../../common/components/styledButtton";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <div onClick={() => navigate(`/`)}>
-        <Logo width="70" height="40" src={logoSvg} alt="Logo"></Logo>
+        <Logo width="91" height="52" src={logoSvg} alt="Logo" />
       </div>
       <div>
         <Row gap="8px">

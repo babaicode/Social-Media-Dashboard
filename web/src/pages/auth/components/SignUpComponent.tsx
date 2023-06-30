@@ -3,7 +3,7 @@ import { Form } from "react-final-form";
 import { CreateUser } from "../../../gql/graphql";
 import InputField from "./InputField";
 import { ButtonBox } from "../styles/ButtonBox";
-import Button from "./Button";
+import Button from "../../../common/components/styledButtton";
 
 const SignUpComponent = () => {
   const {
@@ -23,26 +23,26 @@ const SignUpComponent = () => {
       {(props) => (
         <form onSubmit={props.handleSubmit}>
           <InputField
-            label="firstName"
+            label="First Name"
             name="firstName"
             value={formValues.firstName}
             onChange={handleInputChange}
           />
           <InputField
-            label="lastName"
+            label="Last Name"
             name="lastName"
             value={formValues.lastName}
             onChange={handleInputChange}
           />
           <InputField
-            label="email"
+            label="Email"
             name="email"
             type="email"
             value={formValues.email}
             onChange={handleInputChange}
           />
           <InputField
-            label="password"
+            label="Password"
             name="password"
             type="password"
             value={formValues.password}

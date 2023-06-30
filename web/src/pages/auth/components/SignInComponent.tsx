@@ -3,7 +3,7 @@ import { useSignIn } from "../hooks/useSignIn";
 import { LoginInput } from "../../../gql/graphql";
 import InputField from "./InputField";
 import { ButtonBox } from "../styles/ButtonBox";
-import Button from "./Button";
+import Button from "../../../common/components/styledButtton";
 
 const SignInComponent = () => {
   const { handleInputChange, handleSubmit, formValues, error, loading } =
@@ -27,14 +27,14 @@ const SignInComponent = () => {
       {(props) => (
         <form onSubmit={props.handleSubmit}>
           <InputField
-            label="email"
+            label="Email"
             name="email"
             type="email"
             value={formValues.email}
             onChange={handleInputChange}
           />
           <InputField
-            label="password"
+            label="Password"
             name="password"
             type="password"
             value={formValues.password}
