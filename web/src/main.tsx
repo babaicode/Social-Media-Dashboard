@@ -10,6 +10,14 @@ import {
 } from "@apollo/client";
 
 const authLink = new ApolloLink((operation, forward) => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  operation.setContext({
+    headers: {
+      Authorization: accessToken ? `Bearer ${accessToken}` : "",
+    },
+  });
+
   return forward(operation);
 });
 

@@ -31,6 +31,18 @@ export type Scalars = {
   DateTime: { input: any; output: any };
 };
 
+export type CreateTask = {
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  socialMedia: Scalars["String"]["input"];
+  tag?: InputMaybe<Scalars["String"]["input"]>;
+  title: Scalars["String"]["input"];
+};
+
+export type CreateTaskResponse = {
+  __typename?: "CreateTaskResponse";
+  task: Task;
+};
+
 export type CreateUser = {
   email: Scalars["String"]["input"];
   firstName: Scalars["String"]["input"];
@@ -43,15 +55,16 @@ export type LoginInput = {
   password: Scalars["String"]["input"];
 };
 
-export type LoginResponse = {
-  __typename?: "LoginResponse";
-  user: User;
-};
-
 export type Mutation = {
   __typename?: "Mutation";
-  login: LoginResponse;
-  signup: SignInResponse;
+  createTask: CreateTaskResponse;
+  login: SignInResponse;
+  signup: SignUpResponse;
+  updateUser: Task;
+};
+
+export type MutationCreateTaskArgs = {
+  createTask: CreateTask;
 };
 
 export type MutationLoginArgs = {
@@ -62,14 +75,49 @@ export type MutationSignupArgs = {
   createUser: CreateUser;
 };
 
+export type MutationUpdateUserArgs = {
+  id: Scalars["ID"]["input"];
+  task: UpdateTaskDto;
+};
+
 export type Query = {
   __typename?: "Query";
+  getTask: Task;
   user: User;
+};
+
+export type QueryGetTaskArgs = {
+  id: Scalars["Float"]["input"];
 };
 
 export type SignInResponse = {
   __typename?: "SignInResponse";
+  access_token: Scalars["String"]["output"];
   user: User;
+};
+
+export type SignUpResponse = {
+  __typename?: "SignUpResponse";
+  user: User;
+};
+
+export type Task = {
+  __typename?: "Task";
+  createdAt?: Maybe<Scalars["DateTime"]["output"]>;
+  description: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  socialMedia: Scalars["String"]["output"];
+  tag: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+  updatedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  user: User;
+};
+
+export type UpdateTaskDto = {
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  socialMedia?: InputMaybe<Scalars["String"]["input"]>;
+  tag?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type User = {
@@ -91,7 +139,7 @@ export type SignupMutationVariables = Exact<{
 export type SignupMutation = {
   __typename?: "Mutation";
   signup: {
-    __typename?: "SignInResponse";
+    __typename?: "SignUpResponse";
     user: {
       __typename?: "User";
       id: string;
@@ -109,7 +157,7 @@ export type LoginMutationVariables = Exact<{
 export type LoginMutation = {
   __typename?: "Mutation";
   login: {
-    __typename?: "LoginResponse";
+    __typename?: "SignInResponse";
     user: {
       __typename?: "User";
       id: string;

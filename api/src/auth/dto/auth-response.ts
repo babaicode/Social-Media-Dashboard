@@ -4,12 +4,6 @@ import { UserObject } from 'src/user/dto/user.dto';
 import { User } from 'src/user/user.entity';
 
 @ObjectType()
-export class LoginResponse {
-  @Field(() => UserObject)
-  user: UserObject;
-}
-
-@ObjectType()
 export class LogoutResponse {
   @Field(() => GraphQLBoolean)
   succeded: boolean;
@@ -17,6 +11,14 @@ export class LogoutResponse {
 
 @ObjectType()
 export class SignInResponse {
+  @Field()
+  access_token: string;
+  @Field(() => UserObject)
+  user: UserObject;
+}
+
+@ObjectType()
+export class SignUpResponse {
   @Field(() => UserObject)
   user: UserObject;
 

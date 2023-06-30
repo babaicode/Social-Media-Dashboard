@@ -4,10 +4,19 @@ import { CreateUser } from 'src/user/dto/user.dto';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { LoginInput } from './dto/login-input';
+import { JwtService } from '@nestjs/jwt';
+
+export interface IJwtUserPayload {
+  sub: number;
+  email: string;
+}
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async validateCredentials(
     email: string,
@@ -48,6 +57,13 @@ export class AuthService {
     if (!user) throw new NotFoundException(`Invalid credentials.`);
 
     const result = {
+      access_token: this.jwtService.sign(
+        {
+          email: user.email,
+          sub: user.id,
+        },
+        { expiresIn: '1h' },
+      ),
       user,
     };
     return result;
