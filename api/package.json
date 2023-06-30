@@ -35,6 +35,7 @@
     "@types/bcrypt": "^5.0.0",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
+    "cors": "^2.8.5",
     "graphql": "^16.7.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"

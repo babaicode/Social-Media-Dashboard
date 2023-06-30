@@ -16,9 +16,9 @@ export const Header = () => {
           <Button
             variant="primary"
             size="small"
-            onClick={() => navigate(`/login`)}
+            onClick={() => navigate(`/signIn`)}
           >
-            Log in
+            Sign In
           </Button>
           <Button
             variant="secondary"
