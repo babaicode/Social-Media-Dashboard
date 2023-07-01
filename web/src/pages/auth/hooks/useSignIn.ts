@@ -25,10 +25,11 @@ export const useSignIn = () => {
   }
 
   if (data?.login) {
-    console.log(data, "data");
     localStorage.setItem("accessToken", data.login.access_token);
     navigate(`/`);
   }
+  const token = localStorage.getItem("accessToken")
+  console.log(token, 'my token')
   return {
     handleInputChange,
     handleSubmit,

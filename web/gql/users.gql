@@ -9,9 +9,9 @@ mutation Signup($input: CreateUser!) {
   }
 }
 mutation Login($input: LoginInput!) {
-  login(loginUserInput: $input) {
+  login(loginInput: $input) {
+    access_token
     user {
-      id
       firstName
       lastName
       email

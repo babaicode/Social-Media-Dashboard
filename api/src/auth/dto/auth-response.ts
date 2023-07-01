@@ -10,7 +10,7 @@ export class LogoutResponse {
 }
 
 @ObjectType()
-export class SignInResponse {
+export class LoginResponse {
   @Field()
   access_token: string;
   @Field(() => UserObject)
