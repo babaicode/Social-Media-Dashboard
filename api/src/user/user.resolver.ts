@@ -14,7 +14,6 @@ export class UserResolver {
   @UseGuards(JwtAuthGuard)
   @Query(() => UserObject, { name: 'currentUser' })
   async currentUser(@CurrentUser() user: UserObject) {
-    return this.userService.findUserByEmail(user.email)
+    return this.userService.findUserByEmail(user.email);
   }
-
 }

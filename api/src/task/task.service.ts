@@ -22,6 +22,10 @@ export class TasksService {
     return this.taskRepository.findAll({ populate: ['tag'] });
   }
 
+  async findAllTasks(): Promise<Task[]> {
+    return this.taskRepository.findAll();
+  }
+
   async updateTask(id: number, task: UpdateTaskDto): Promise<Task> {
     const existingTask = await this.findOneById(id);
     wrap(existingTask).assign(task);

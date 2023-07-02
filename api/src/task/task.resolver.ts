@@ -36,6 +36,12 @@ export class TasksResolver {
     return user;
   }
 
+  @Query(() => [TaskObject]) // Define the return type as an array of TaskObject
+  async getAllTasks(): Promise<TaskObject[]> {
+    const tasks = await this.taskService.findAllTasks();
+    return tasks.map((task) => new TaskObject(task));
+  }
+
   @Query(() => TaskObject)
   async getTask(@Args('id') id: number) {
     const task = await this.taskService.findOneById(id);

@@ -1,4 +1,5 @@
-import { DOMAttributes, FC, InputHTMLAttributes } from "react";
+import React, { DOMAttributes, FC, InputHTMLAttributes } from "react";
+import { useTranslation } from "react-i18next";
 import { useField } from "react-final-form";
 import { FieldValidator } from "final-form";
 import { Container, Input, Label, Error } from "../styles/InputField";
@@ -18,6 +19,7 @@ const InputField: FC<InputFieldProps> = ({
   type = "text",
   ...rest
 }) => {
+  const { t } = useTranslation();
   const { input, meta } = useField(name, {
     type: "input",
     validate: rest.validate,
@@ -33,7 +35,7 @@ const InputField: FC<InputFieldProps> = ({
         width={rest.width}
         {...rest}
       />
-      {meta.touched && meta.error ? <Error>Error</Error> : null}
+      {meta.touched && meta.error ? <Error>{t(meta.error)}</Error> : null}
     </Container>
   );
 };

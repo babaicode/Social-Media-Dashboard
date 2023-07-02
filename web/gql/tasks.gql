@@ -1,0 +1,35 @@
+mutation CreateTask($input: CreateTask!) {
+  createTask(createTask: $input) {
+    task {
+      title
+      id
+      tag
+      createdAt
+      description
+      socialMedia
+    }
+  }
+}
+
+mutation UpdateTask($id: ID!, $task: UpdateTaskDto!) {
+  updateUser(id: $id, task: $task) {
+    id
+    title
+    tag
+    description
+    socialMedia
+    createdAt
+    updatedAt
+  }
+}
+
+query getAllTasks {
+  getAllTasks {
+    tag
+    socialMedia
+    title
+    description
+    createdAt
+    id
+  }
+}

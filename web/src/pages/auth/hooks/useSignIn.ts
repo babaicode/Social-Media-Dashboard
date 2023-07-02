@@ -19,17 +19,24 @@ export const useSignIn = () => {
     setFormValues({ ...formValues, [name]: value });
   }
 
-  async function handleSubmit(values: LoginInput) {
-    await login({ variables: { input: values } });
-    console.log(formValues, "formValues");
+  async function handleSubmit() {
+    console.log("handleSubmit called");
+    try {
+      const response = await login({ variables: { input: formValues } });
+      console.log(formValues, "formValues");
+
+      if (response.data?.login) {
+        const userEmail = response.data.login.user.email;
+        console.log("User logged in with email:", userEmail);
+        console.log(response.data.login.access_token, "token");
+        localStorage.setItem("accessToken", response.data.login.access_token);
+        navigate(`/`);
+      }
+    } catch (error) {
+      console.log("Error in handleSubmit:", error);
+    }
   }
 
-  if (data?.login) {
-    localStorage.setItem("accessToken", data.login.access_token);
-    navigate(`/`);
-  }
-  const token = localStorage.getItem("accessToken")
-  console.log(token, 'my token')
   return {
     handleInputChange,
     handleSubmit,

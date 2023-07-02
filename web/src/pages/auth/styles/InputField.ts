@@ -13,7 +13,9 @@ export const Label = styled.label`
   font-size: 13px;
 `;
 
-export const Input = styled.input<WidthProps>`
+export const Input = styled.input<
+  WidthProps & { value?: string | number | readonly string[] | null }
+>`
   background: #ebf0f1;
   border: none;
   border-radius: 25px;

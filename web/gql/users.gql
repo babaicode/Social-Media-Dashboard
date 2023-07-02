@@ -8,6 +8,7 @@ mutation Signup($input: CreateUser!) {
     }
   }
 }
+
 mutation Login($input: LoginInput!) {
   login(loginInput: $input) {
     access_token

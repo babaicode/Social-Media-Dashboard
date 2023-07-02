@@ -5,6 +5,7 @@ import {
   SignupDocument,
   SignupMutationResult,
 } from "../../../gql/graphql";
+import { useNavigate } from "react-router-dom";
 const formInitialValues = {
   email: "",
   firstName: "",
@@ -14,6 +15,7 @@ const formInitialValues = {
 
 export const useSignUp = () => {
   const [signup, { error }] = useMutation<SignupMutationResult>(SignupDocument);
+  const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState<CreateUser>(formInitialValues);
 
@@ -24,10 +26,11 @@ export const useSignUp = () => {
     console.log(formValues, "formValues");
   }
 
-  async function handleSubmit(values: CreateUser) {
-    await signup({ variables: { input: values } });
-    console.log(values, "create user");
-    setFormValues(formInitialValues);
+  async function handleSubmit() {
+    console.log({ variables: { input: formValues } }, "values");
+    const re = await signup({ variables: { input: formValues } });
+    if (re.data) navigate("/signin");
+    setFormValues(formValues);
   }
   return {
     handleInputChange,
