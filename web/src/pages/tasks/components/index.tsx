@@ -1,4 +1,4 @@
-import { TasksListBox } from "../styles";
+import { TasksListBox } from "../styles/styles";
 import { useGetMyTasks } from "../hooks/useGetMyTasks";
 import { OneTaskComponent } from "./OneTaskComponent";
 import { CreateTaskComponent } from "./CreateTask";

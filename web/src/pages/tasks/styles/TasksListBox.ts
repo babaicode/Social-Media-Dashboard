@@ -6,4 +6,3 @@ export const TasksListBox = styled.div`
   flex-direction: column;
   background: red;
 `;
-// width: calc(100% - 40px);
