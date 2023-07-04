@@ -12,7 +12,7 @@ export class UserResolver {
   constructor(private userService: UserService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Query(() => UserObject, { name: 'currentUser' })
+  @Query(() => UserObject, { name: 'user' })
   async currentUser(@CurrentUser() user: UserObject) {
     return this.userService.findUserByEmail(user.email);
   }

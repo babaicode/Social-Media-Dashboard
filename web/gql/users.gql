@@ -19,3 +19,12 @@ mutation Login($input: LoginInput!) {
     }
   }
 }
+
+query user {
+  user {
+    firstName
+    lastName
+    email
+    id
+  }
+}
