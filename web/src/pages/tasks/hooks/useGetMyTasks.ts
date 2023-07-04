@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { GetAllTasksDocument, GetAllTasksQuery } from "../../../gql/graphql";
 
 export const useGetMyTasks = () => {
-  const { error, data, loading, refetch } =
+  const { error, data, loading } =
     useQuery<GetAllTasksQuery>(GetAllTasksDocument);
 
   if (error) {
@@ -17,5 +17,5 @@ export const useGetMyTasks = () => {
     return { dataSource };
   }
 
-  return { dataSource: [], refetch };
+  return { dataSource: [] };
 };

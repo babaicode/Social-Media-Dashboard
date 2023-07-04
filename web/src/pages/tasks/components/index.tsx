@@ -4,9 +4,10 @@ import { OneTaskComponent } from "./OneTaskComponent";
 import { CreateTaskComponent } from "./CreateTask";
 import { useEffect, useState } from "react";
 import { Task } from "../../../gql/graphql";
+import DescriptionLine from "./DescriptionLine";
 
 const MytasksPage = () => {
-  const { dataSource, refetch } = useGetMyTasks();
+  const { dataSource } = useGetMyTasks();
 
   const [tasks, setTasks] = useState<Task[]>([]);
 
@@ -17,12 +18,18 @@ const MytasksPage = () => {
   return (
     <>
       <CreateTaskComponent />
-      <TasksListBox>
-        {tasks &&
-          tasks.map((task: Task) => (
-            <OneTaskComponent task={task} key={task.id} />
-          ))}
-      </TasksListBox>
+      {tasks.length > 0 ? (
+        <>
+          <TasksListBox>
+            <DescriptionLine />
+            {tasks.map((task: Task) => (
+              <OneTaskComponent task={task} key={task.id} />
+            ))}
+          </TasksListBox>
+        </>
+      ) : (
+        <>create new task</>
+      )}
     </>
   );
 };

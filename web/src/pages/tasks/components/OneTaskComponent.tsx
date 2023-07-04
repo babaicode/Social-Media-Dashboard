@@ -1,4 +1,10 @@
-import { Description, OneTaskBox, SocialMedia, Tag, Title } from "../styles/OneTaskComponent";
+import {
+  Description,
+  OneTaskBox,
+  SocialMedia,
+  Tag,
+  Title,
+} from "../styles/OneTaskComponent";
 
 export const OneTaskComponent = ({ task }: any) => {
   return (

@@ -52,12 +52,7 @@ const InputTaskField: FC<InputFieldProps> = ({
   return (
     <Container>
       {showLabel && <Label>{label}</Label>}
-      <InputComponent
-        {...input}
-        type="text"
-        placeholder={label}
-        {...rest}
-      />
+      <InputComponent {...input} type="text" placeholder={label} {...rest} />
       {meta && <Error>{meta.error}</Error>}
     </Container>
   );
