@@ -33,9 +33,16 @@ export class TasksService {
     return existingTask;
   }
 
-  async createTask(createTask: CreateTask): Promise<Task> {
-    const createdTask = this.taskRepository.create(createTask);
+  async createTask(createTask: CreateTask, user: User): Promise<Task> {
+    const createdTask = this.taskRepository.create({
+      ...createTask,
+      user: user,
+    });
     await this.em.persistAndFlush(createdTask);
     return createdTask;
+  }
+
+  async findTasksByUserId(userId: number): Promise<Task[]> {
+    return this.em.find(Task, { user: userId });
   }
 }

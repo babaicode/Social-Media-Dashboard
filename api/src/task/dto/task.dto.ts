@@ -7,7 +7,7 @@ import {
 } from '@nestjs/graphql';
 import { Task } from '../task.entity';
 import { UserObject } from 'src/user/dto/user.dto';
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 @ObjectType('Task')
 export class TaskObject {
@@ -62,6 +62,9 @@ export class CreateTask {
   @IsNotEmpty()
   @Field()
   socialMedia: string;
+
+  @IsNumber()
+  userId: number;
 }
 
 @InputType()

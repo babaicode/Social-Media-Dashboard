@@ -1,4 +1,4 @@
-import { Entity, OneToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
 import { User } from 'src/user/user.entity';
 
 @Entity()
@@ -24,6 +24,6 @@ export class Task {
   @Property({ onCreate: () => new Date(), onUpdate: () => new Date() })
   updatedAt: Date;
 
-  @OneToOne(() => User, (user) => user.task, { orphanRemoval: true })
+  @ManyToOne(() => User)
   user: User;
 }

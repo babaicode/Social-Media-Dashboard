@@ -3,11 +3,16 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from './user.entity';
 import { CreateUser, UpdateUserDto } from './dto/user.dto';
 import { EntityManager } from '@mikro-orm/postgresql';
+import { Task } from 'src/task/task.entity';
+import { TasksService } from 'src/task/task.service';
 
 @Injectable()
 export class UserService {
   private readonly usersRepository: EntityRepository<User>;
-  constructor(private readonly em: EntityManager) {
+  constructor(
+    private readonly em: EntityManager,
+    private readonly taskService: TasksService,
+  ) {
     this.usersRepository = this.em.getRepository(User);
   }
   findAllUsers() {
@@ -55,5 +60,9 @@ export class UserService {
   async findUserByEmail(email: string) {
     const user = await this.usersRepository.findOne({ email });
     return user;
+  }
+
+  async findTasksOfUser(userId: number): Promise<Task[]> {
+    return this.taskService.findTasksByUserId(userId);
   }
 }

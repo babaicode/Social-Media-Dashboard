@@ -12,6 +12,9 @@ import { TasksService } from './task.service';
 import { CreateTask, TaskObject, UpdateTaskDto } from './dto/task.dto';
 import { CreateTaskResponse } from './dto/task-response';
 import { User } from 'src/user/user.entity';
+import { CurrentUser } from 'src/auth/loggedUser.decorator';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/dto/jwt-auth.guard';
 
 @Resolver(() => TaskObject)
 export class TasksResolver {
@@ -47,13 +50,14 @@ export class TasksResolver {
     const task = await this.taskService.findOneById(id);
     return new TaskObject(task);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Mutation(() => CreateTaskResponse)
   async createTask(
     @Args('createTask') createTask: CreateTask,
+    @CurrentUser() user: User,
   ): Promise<CreateTaskResponse> {
     return new CreateTaskResponse(
-      await this.taskService.createTask(createTask),
+      await this.taskService.createTask(createTask, user),
     );
   }
 
